@@ -1,55 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alex Core — Your AI Guide</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Core — Chat with Alex</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header>
-    <h1>Alex Core</h1>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-    </nav>
-  </header>
+    <div class="container">
+        <h1>Chat with Alex</h1>
 
-  <main>
-    <h2>Welcome to your personal AI — Alex!</h2>
-    <p>Ask me anything. I’m learning and evolving with you.</p>
+        <div id="chat-box">
+            <!-- Messages will show here -->
+        </div>
 
-    <div class="chatbox">
-      <div class="chat-messages" id="chat-messages"></div>
-      <div class="chat-input">
-        <input type="text" id="user-input" placeholder="Type your message here..." />
-        <button onclick="sendMessage()">Send</button>
-      </div>
+        <form id="chat-form">
+            <input type="text" id="user-input" placeholder="Type your message..." required />
+            <button type="submit">Send</button>
+        </form>
+
+        <footer>
+            <p>© 2025 Alex Core. All rights reserved.</p>
+        </footer>
     </div>
-  </main>
 
-  <footer>
-    <p>© 2025 Alex Core. All rights reserved.</p>
-  </footer>
+    <script>
+        const chatForm = document.getElementById('chat-form');
+        const chatBox = document.getElementById('chat-box');
 
-  <script>
-    function sendMessage() {
-      const input = document.getElementById('user-input');
-      const message = input.value;
-      if (message.trim() === "") return;
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-      const chatMessages = document.getElementById('chat-messages');
-      chatMessages.innerHTML += `<div class="user-message"><strong>You:</strong> ${message}</div>`;
+            const userInput = document.getElementById('user-input').value;
+            appendMessage('You', userInput);
 
-      input.value = "";
+            const response = await fetch('https://your-backend-api.com/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: userInput })
+            });
 
-      // Placeholder bot response
-      setTimeout(() => {
-        chatMessages.innerHTML += `<div class="bot-message"><strong>Alex:</strong> (Response will come from backend here)</div>`;
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-      }, 500);
-    }
-  </script>
+            const data = await response.json();
+            appendMessage('Alex', data.reply);
+
+            chatForm.reset();
+        });
+
+        function appendMessage(sender, message) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
 </body>
+
 </html>
