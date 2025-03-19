@@ -1,75 +1,66 @@
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #f0f4f8;
+    font-family: Arial, sans-serif;
+    background-color: #ecf4f9;
+    text-align: center;
     margin: 0;
     padding: 0;
-    color: #333;
-    text-align: center;
 }
 
-.navbar {
-    background-color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px 0;
+header {
+    padding: 20px;
 }
 
-.navbar h1 {
-    margin: 0;
-    font-size: 2.8rem;
+h1 {
+    font-size: 3em;
+    animation: fadeIn 2s ease-in-out;
 }
 
-.navbar nav {
-    margin-top: 10px;
-}
-
-.navbar nav a {
-    margin: 0 15px;
+nav a {
+    margin: 0 10px;
     text-decoration: none;
-    color: #007acc;
-    font-weight: 500;
-    font-size: 1.2rem;
+    color: #000;
+    font-weight: bold;
+    font-size: 1.2em;
 }
 
-.navbar nav a:hover {
-    text-decoration: underline;
+nav a:hover {
+    color: #4caf50;
 }
 
 main {
-    padding: 60px 20px;
+    padding: 20px;
 }
 
 h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    animation: fadeIn 1.5s ease;
+    font-size: 2em;
+    margin-bottom: 10px;
+    animation: slideIn 2s ease-in-out;
 }
 
 p {
-    font-size: 1.3rem;
-    margin-bottom: 30px;
-    animation: slideIn 1.5s ease;
+    font-size: 1.3em;
+    margin-bottom: 20px;
 }
 
 button {
-    padding: 12px 30px;
-    font-size: 1.2rem;
-    color: #fff;
-    background-color: #28a745;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #4caf50;
+    color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #45a049;
 }
 
 footer {
-    margin-top: 60px;
-    font-size: 0.95rem;
+    margin-top: 40px;
+    padding: 20px;
+    font-size: 0.9em;
     color: #555;
-    padding-bottom: 30px;
 }
 
 @keyframes fadeIn {
@@ -78,16 +69,24 @@ footer {
 }
 
 @keyframes slideIn {
-    from { transform: translateY(50px); opacity: 0; }
+    from { transform: translateY(30px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
 }
 
 @media (max-width: 600px) {
-    .navbar h1 {
-        font-size: 2rem;
+    h1 {
+        font-size: 2.2em;
     }
-    .navbar nav a {
-        display: block;
-        margin: 10px 0;
+
+    h2 {
+        font-size: 1.6em;
+    }
+
+    p {
+        font-size: 1.1em;
+    }
+
+    button {
+        font-size: 1em;
     }
 }
